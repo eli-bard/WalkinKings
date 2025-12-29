@@ -1,0 +1,229 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinhar ao topo para mais espaço */
+    min-height: 100vh;
+    background-color: #282c34;
+    color: #e0e0e0;
+    margin: 20px;
+    padding: 0;
+}
+
+.game-container {
+    background-color: #3b3f47;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+}
+
+h1 {
+    color: #61dafb;
+    margin-bottom: 20px;
+}
+
+.status-message {
+    background-color: #4a4f59;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    min-height: 20px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.controls {
+    margin-bottom: 25px;
+}
+
+.controls button {
+    background-color: #555;
+    color: #e0e0e0;
+    border: none;
+    padding: 12px 25px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.1s;
+    outline: none;
+}
+
+.controls button:hover {
+    background-color: #666;
+}
+
+.controls button:active {
+    transform: translateY(1px);
+}
+
+.controls button.active {
+    background-color: #61dafb;
+    color: #282c34;
+    font-weight: bold;
+}
+
+.board-wrapper {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Para labels de linha e tabuleiro */
+    grid-template-rows: auto 1fr; /* Para labels de coluna e tabuleiro */
+    justify-content: center;
+    align-items: center;
+    gap: 5px; /* Espaço entre labels e tabuleiro */
+    margin: 0 auto;
+    width: fit-content; /* Ajustar largura ao conteúdo */
+    max-width: 100%;
+}
+
+.column-labels, .row-labels {
+    display: flex;
+    font-weight: bold;
+    color: #aaa;
+    font-size: 0.9em;
+    justify-content: space-around; /* Distribui as labels */
+}
+
+.column-labels {
+    grid-column: 2; /* Coloca os labels de coluna acima do tabuleiro */
+    display: grid;
+    grid-template-columns: repeat(9, 50px); /* Cada label tem a largura de uma célula */
+    margin-left: 5px; /* Alinhar com o tabuleiro */
+}
+.column-labels span {
+    width: 50px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-labels {
+    grid-row: 2; /* Coloca os labels de linha à esquerda do tabuleiro */
+    display: grid;
+    grid-template-rows: repeat(9, 50px); /* Cada label tem a altura de uma célula */
+}
+.row-labels span {
+    width: 20px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(9, 50px); /* 9 colunas de 50px cada */
+    grid-template-rows: repeat(9, 50px); /* 9 linhas de 50px cada */
+    border: 3px solid #61dafb;
+    box-shadow: 0 0 15px rgba(97, 218, 251, 0.3);
+    border-radius: 5px;
+    overflow: hidden; /* Garante que as bordas arredondadas funcionem bem */
+    background-color: #4a4f59; /* Cor de fundo do tabuleiro */
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    border: 1px solid #555; /* Bordas entre as células */
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    user-select: none; /* Impede a seleção de texto */
+}
+
+.cell:hover:not(.selected):not(.player-piece) {
+    background-color: #666;
+}
+
+.cell.player-X {
+    color: #ff5e5e; /* Vermelho para X */
+}
+
+.cell.player-O {
+    color: #4ed963; /* Verde para O */
+}
+
+.cell.obstacle {
+    background-color: #888;
+    color: #333;
+    font-size: 1em;
+}
+
+.cell.selected {
+    background-color: #ffeb3b; /* Amarelo para célula selecionada */
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(255, 235, 59, 0.8);
+}
+
+.cell.valid-move {
+    background-color: #76ff03; /* Verde para movimentos válidos */
+    border: 2px solid #558b2f;
+}
+
+.player-info {
+    margin-top: 25px;
+    font-size: 1.1em;
+    color: #e0e0e0;
+}
+
+.player-info p {
+    margin: 5px 0;
+}
+
+.player-X-text {
+    color: #ff5e5e;
+    font-weight: bold;
+}
+
+.player-O-text {
+    color: #4ed963;
+    font-weight: bold;
+}
+
+/* Responsividade básica */
+@media (max-width: 600px) {
+    .game-container {
+        padding: 15px;
+        margin: 10px;
+    }
+    .controls button {
+        padding: 10px 15px;
+        margin: 5px;
+        font-size: 0.9em;
+    }
+    #game-board {
+        grid-template-columns: repeat(9, 35px);
+        grid-template-rows: repeat(9, 35px);
+    }
+    .cell {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2em;
+    }
+    .column-labels, .row-labels {
+        font-size: 0.8em;
+    }
+    .column-labels {
+        grid-template-columns: repeat(9, 35px);
+    }
+    .column-labels span {
+        width: 35px;
+        height: 15px;
+    }
+    .row-labels {
+        grid-template-rows: repeat(9, 35px);
+    }
+    .row-labels span {
+        width: 15px;
+        height: 35px;
+    }
+}

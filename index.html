@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trajeto Bloqueado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Trajeto Bloqueado</h1>
+        <div id="status-message" class="status-message"></div>
+
+        <div class="controls">
+            <button id="btn-move" class="active">Mover Peça</button>
+            <button id="btn-obstacle">Colocar Obstáculo</button>
+        </div>
+
+        <div class="board-wrapper">
+            <div class="column-labels">
+                <span>9</span><span>8</span><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span>
+            </div>
+            <div class="row-labels">
+                <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span>
+            </div>
+            <div id="game-board" class="game-board">
+                <!-- As células do tabuleiro serão geradas aqui pelo JavaScript -->
+            </div>
+        </div>
+        
+        <div id="player-info" class="player-info">
+            <!-- Informações do jogador e obstáculos serão mostradas aqui -->
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
